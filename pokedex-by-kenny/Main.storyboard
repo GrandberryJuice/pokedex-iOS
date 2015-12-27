@@ -4,6 +4,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Pokemonfont.ttf">
+            <string>PokemonSolidNormal</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -22,10 +27,37 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDU-tE-RcL">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pokedex" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8U-zO-3Nk">
+                                        <rect key="frame" x="179" y="8" width="200" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="TGA-OL-aba"/>
+                                            <constraint firstAttribute="height" constant="56" id="u80-rn-MIC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PokemonSolidNormal" family="Pokemon Solid" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2c5-hn-vla">
+                                        <rect key="frame" x="525" y="16" width="53" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="IW6-kg-cfh"/>
+                                            <constraint firstAttribute="width" constant="53" id="hzN-ai-q6r"/>
+                                        </constraints>
+                                        <state key="normal" image="headphones12"/>
+                                        <connections>
+                                            <action selector="musicBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A7u-Io-bcb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.34509803921568627" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2c5-hn-vla" secondAttribute="trailing" constant="22" id="58d-kf-4bG"/>
                                     <constraint firstAttribute="height" constant="72" id="A8q-4j-yIU"/>
+                                    <constraint firstItem="G8U-zO-3Nk" firstAttribute="centerY" secondItem="rDU-tE-RcL" secondAttribute="centerY" id="eEa-EX-RsZ"/>
+                                    <constraint firstItem="2c5-hn-vla" firstAttribute="top" secondItem="rDU-tE-RcL" secondAttribute="top" constant="16" id="lCg-Rf-TjI"/>
                                     <constraint firstAttribute="height" constant="72" id="sNl-FG-Dah"/>
+                                    <constraint firstItem="G8U-zO-3Nk" firstAttribute="centerX" secondItem="rDU-tE-RcL" secondAttribute="centerX" id="xpt-kl-5N0"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -84,7 +116,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="ZFn-YD-UfH">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for Pokemon" translatesAutoresizingMaskIntoConstraints="NO" id="ZFn-YD-UfH">
                                 <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -134,16 +166,59 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="SearchBar" destination="ZFn-YD-UfH" id="QPX-AZ-q94"/>
                         <outlet property="collection" destination="IOG-jL-ik4" id="eDC-5v-Rs0"/>
+                        <segue destination="5rM-Cz-1P7" kind="show" identifier="PokemonDetailVC" id="BbK-ue-OY4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="380" y="309"/>
         </scene>
+        <!--Pokemon Detail Vc-->
+        <scene sceneID="XQq-f8-GPR">
+            <objects>
+                <viewController id="5rM-Cz-1P7" customClass="PokemonDetailVc" customModule="pokedex_by_kenny" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GaD-XA-hWV"/>
+                        <viewControllerLayoutGuide type="bottom" id="NsX-mW-rjF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aYw-5e-QcP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tb5-jM-hhl">
+                                <rect key="frame" x="144" y="119" width="312" height="88"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="dna-b6-alX"/>
+                                    <constraint firstAttribute="width" constant="312" id="xBI-La-FFf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40068000059999997" green="1" blue="0.1003403858" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Tb5-jM-hhl" firstAttribute="leading" secondItem="aYw-5e-QcP" secondAttribute="leadingMargin" constant="124" id="8v7-gH-Z0T"/>
+                            <constraint firstItem="Tb5-jM-hhl" firstAttribute="top" secondItem="GaD-XA-hWV" secondAttribute="bottom" constant="99" id="FHd-rI-vSZ"/>
+                            <constraint firstItem="NsX-mW-rjF" firstAttribute="top" secondItem="Tb5-jM-hhl" secondAttribute="bottom" constant="393" id="TTE-ax-wbB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Tb5-jM-hhl" secondAttribute="trailing" constant="124" id="msH-kS-ULk"/>
+                            <constraint firstItem="Tb5-jM-hhl" firstAttribute="centerX" secondItem="aYw-5e-QcP" secondAttribute="centerX" id="tMX-HG-ctc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pokemonName" destination="Tb5-jM-hhl" id="osa-ug-VNr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XWQ-EN-eAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1119" y="309"/>
+        </scene>
     </scenes>
     <resources>
         <image name="297" width="120" height="120"/>
         <image name="bg" width="1920" height="1200"/>
+        <image name="headphones12" width="32" height="32"/>
     </resources>
 </document>
